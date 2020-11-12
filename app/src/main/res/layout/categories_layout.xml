@@ -46,63 +46,21 @@
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-
-    <Button
-            android:text="Reports"
-            android:textSize="24sp"
+    <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/reportBtn"
-            android:padding="50px"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <Button
-            android:text="Deposit"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/depositBtn"
-            android:padding="50px"
-            />
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="hint"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-            android:text="Transfer"
-            android:textSize="24sp"
+    <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transferBtn"
-            android:padding="50px"
-            />
+            android:layout_height="match_parent">
 
-    <Button
-            android:text="Schedule paids"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/schedulePaidsBtn"
-            android:padding="50px"/>
-
-    <Button
-            android:text="Categories"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/categoriesBtn"
-            android:padding="50px"/>
-
-    <Button
-            android:text="Switch account"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/switchAccountBtn"
-            android:padding="50px"/>
-
-    <Button
-            android:text="Logout"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/logoutBtn"
-            android:padding="50px"/>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

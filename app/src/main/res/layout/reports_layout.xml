@@ -46,63 +46,35 @@
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-
     <Button
-            android:text="Reports"
+            android:text="@string/montly"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/reportBtn"
+            android:id="@+id/montlyReportBtn"
             android:padding="50px"/>
 
     <Button
-            android:text="Deposit"
+            android:text="@string/quarterly"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/depositBtn"
-            android:padding="50px"
-            />
-
-    <Button
-            android:text="Transfer"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transferBtn"
-            android:padding="50px"
-            />
-
-    <Button
-            android:text="Schedule paids"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/schedulePaidsBtn"
+            android:id="@+id/quarterlyReportBtn"
             android:padding="50px"/>
 
     <Button
-            android:text="Categories"
+            android:text="@string/biannual"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/categoriesBtn"
+            android:id="@+id/biannualReportBtn"
             android:padding="50px"/>
 
     <Button
-            android:text="Switch account"
+            android:text="@string/custom_period"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/switchAccountBtn"
+            android:id="@+id/customPeriodBtn"
             android:padding="50px"/>
-
-    <Button
-            android:text="Logout"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/logoutBtn"
-            android:padding="50px"/>
-
 </LinearLayout>

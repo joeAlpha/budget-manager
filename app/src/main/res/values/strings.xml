@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">BudgetManager</string>
-    <string name="_1000_00">$1000.00</string>
+    <string name="balance">$1000.00</string>
+    <string name="montly">Montly</string>
+    <string name="quarterly">Quarterly</string>
+    <string name="biannual">Biannual</string>
+    <string name="custom_period">Custom period</string>
 </resources>
