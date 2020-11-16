@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".MainActivity"
         android:orientation="vertical">
 
@@ -14,7 +14,7 @@
             android:background="?attr/colorPrimary"
             android:theme="?attr/actionBarTheme"
             android:minHeight="?attr/actionBarSize"
-            android:layout_marginBottom="50px"
+            android:layout_marginBottom="10dp"
             android:id="@+id/toolbar2">
 
         <LinearLayout
@@ -23,8 +23,8 @@
                 >
 
             <TextView
-                    android:text="Account balance: "
-                    android:layout_width="wrap_content"
+                    android:text="@string/account_balance"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView"
                     android:textSize="24sp"
@@ -48,61 +48,62 @@
 
 
     <Button
-            android:text="Reports"
+            android:text="@string/reports"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/reportBtn"
-            android:padding="50px"/>
+            android:padding="10dp"/>
 
     <Button
-            android:text="Deposit"
+            android:text="@string/deposit"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/depositBtn"
-            android:padding="50px"
+            android:padding="10dp"
             />
 
     <Button
-            android:text="Transfer"
+            android:text="@string/transfer"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/transferBtn"
-            android:padding="50px"
+            android:padding="10dp"
             />
 
     <Button
-            android:text="Schedule paids"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/schedulePaidsBtn"
-            android:padding="50px"/>
-
-    <Button
-            android:text="Categories"
+            android:text="@string/categories"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/categoriesBtn"
-            android:padding="50px"/>
+            android:padding="10dp"/>
 
     <Button
-            android:text="Switch account"
+            android:text="@string/schedule_paids"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/schedulePaidsBtn"
+            android:padding="10dp"/>
+
+
+    <Button
+            android:text="@string/switch_account"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/switchAccountBtn"
-            android:padding="50px"/>
+            android:padding="10dp"/>
 
     <Button
-            android:text="Logout"
+            android:text="@string/logout"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/logoutBtn"
-            android:padding="50px"/>
+            android:padding="10dp"/>
 
 </LinearLayout>

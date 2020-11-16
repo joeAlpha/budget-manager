@@ -33,6 +33,9 @@
 
         <activity android:name=".AccountChooser">
         </activity>
+
+        <activity android:name=".NewAccount">
+        </activity>
     </application>
 
 </manifest>

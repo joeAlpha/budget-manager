@@ -5,4 +5,14 @@
     <string name="quarterly">Quarterly</string>
     <string name="biannual">Biannual</string>
     <string name="custom_period">Custom period</string>
+    <string name="new_account">New account +</string>
+    <string name="register">Register</string>
+    <string name="account_balance">Account balance:</string>
+    <string name="reports">Reports</string>
+    <string name="deposit">Deposit</string>
+    <string name="transfer">Transfer</string>
+    <string name="schedule_paids">Schedule paids</string>
+    <string name="categories">Categories</string>
+    <string name="switch_account">Switch account</string>
+    <string name="logout">Logout</string>
 </resources>

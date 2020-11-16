@@ -46,6 +46,12 @@
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
+    <Button
+            android:text="@string/new_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"/>
+
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
