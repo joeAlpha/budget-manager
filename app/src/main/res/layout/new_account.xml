@@ -42,9 +42,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text="New account name"
             android:ems="10"
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/accountNameField"
             android:hint="New account name"/>
 
     <Spinner
