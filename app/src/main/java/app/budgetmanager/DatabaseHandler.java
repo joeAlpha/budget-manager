@@ -32,7 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TRANSACTION_SCHEDULED = "scheduled";
     private static final String TRANSACTION_NOTES = "notes";
     private static final String TRANSACTION_ACCOUNT = "account";
-    private static final String TRANSACTION_CATEGORY = "account";
+    private static final String TRANSACTION_CATEGORY = "category";
 
     //Categories
     private static final String CATEGORY_TABLE = "categories";
@@ -74,7 +74,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_CATEGORY_TABLE = "CREATE TABLE " + CATEGORY_TABLE + "(" +
                 CATEGORY_ID + " INTEGER PRIMARY KEY," +
                 CATEGORY_NAME + " TEXT," +
-                TRANSACTION_ACCOUNT + " TEXT" +
+                CATEGORY_ACCOUNT + " TEXT" +
                 ")";
         db.execSQL(CREATE_CATEGORY_TABLE);
     }

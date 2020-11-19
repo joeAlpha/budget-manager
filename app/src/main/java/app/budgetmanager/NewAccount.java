@@ -37,11 +37,6 @@ public class NewAccount extends AppCompatActivity {
         accountTypeOptions = (Spinner) findViewById(R.id.accountTypeOptions);
         String[] options = new String[]{"Credit", "Debit", "Money"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,options);
-
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-        //        android.R.layout.simple_spinner_item, (List<String>) accountTypeOptions);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //accountTypeOptions.setAdapter(adapter)
         accountTypeOptions.setAdapter(adapter);
 
         // Register button
@@ -49,13 +44,13 @@ public class NewAccount extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accountName = accountNameField.toString();
+                accountName = accountNameField.getText().toString();
                 accountType = accountTypeOptions.getSelectedItem().toString();
 
                 // Insertion in DB
                 db.addAccount(new Account(accountName, accountType, initialBalance));
 
-                Log.d("Reading: ","Reading all contacts..");
+                Log.d("Reading: ","Reading all accounts..");
                 List<Account> accounts = db.getAllAccounts();
 
                 for(Account account :accounts)
