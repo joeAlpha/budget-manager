@@ -8,7 +8,14 @@ import android.os.Bundle;
 
 // A main view with the actions for each account
 public class MainActivity extends AppCompatActivity {
-    Button transferBtn, reportBtn, depositBtn, scheduledPaidsBtn, categoriesBtn, switchAccountBtn, logoutBtn;
+    Button transferBtn,
+            reportBtn,
+            depositBtn,
+            scheduledPaidsBtn,
+            categoriesBtn,
+            switchAccountBtn,
+            logoutBtn,
+            newAccountBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +74,17 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentSwitchAccount = new Intent(MainActivity.this, AccountChooser.class);
                 startActivity(intentSwitchAccount);
             }
+
         });
 
+        newAccountBtn = findViewById(R.id.newAccountBtn);
+        newAccountBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newAccountIntent = new Intent(MainActivity.this, NewAccount.class);
+                startActivity(newAccountIntent);
+            }
+        });
         logoutBtn = findViewById(R.id.logoutBtn);
     }
 }

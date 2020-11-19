@@ -1,8 +1,8 @@
 package app.budgetmanager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class NewAccount extends AppCompatActivity {
     // Gui elements
-    Editable accountNameField;
+    EditText accountNameField;
     Spinner accountTypeOptions;
     Button registerBtn;
 
@@ -35,13 +35,17 @@ public class NewAccount extends AppCompatActivity {
 
         // Account type dropdown list
         accountTypeOptions = (Spinner) findViewById(R.id.accountTypeOptions);
-        String[] options = new String[] {"Credit", "Debit", "Money"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, (List<String>) accountTypeOptions);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        String[] options = new String[]{"Credit", "Debit", "Money"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,options);
+
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        //        android.R.layout.simple_spinner_item, (List<String>) accountTypeOptions);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //accountTypeOptions.setAdapter(adapter)
         accountTypeOptions.setAdapter(adapter);
 
         // Register button
+        registerBtn = findViewById(R.id.registerBtn);
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +54,19 @@ public class NewAccount extends AppCompatActivity {
 
                 // Insertion in DB
                 db.addAccount(new Account(accountName, accountType, initialBalance));
+
+                Log.d("Reading: ","Reading all contacts..");
+                List<Account> accounts = db.getAllAccounts();
+
+                for(Account account :accounts)
+                {
+                    String log = "Id: " + account.getId() + " ,Name: " + account.getName() + " , type: " +
+                            account.getType();
+                    // Writing Contacts to log
+                    Log.d("Name: ", log);
+                }
             }
+
         });
     }
 }

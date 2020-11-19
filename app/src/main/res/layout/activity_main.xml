@@ -89,6 +89,13 @@
             android:id="@+id/schedulePaidsBtn"
             android:padding="10dp"/>
 
+    <Button
+            android:text="@string/new_account"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/newAccountBtn"
+            android:padding="10dp"/>
 
     <Button
             android:text="@string/switch_account"

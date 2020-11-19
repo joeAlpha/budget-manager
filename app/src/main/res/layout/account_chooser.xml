@@ -50,7 +50,7 @@
             android:text="@string/new_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button"/>
+            android:id="@+id/newAccountBtn"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
