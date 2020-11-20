@@ -46,30 +46,11 @@
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <Button
-            android:text="@string/montly"
-            android:textSize="24sp"
+    <Spinner
+            android:layout_marginBottom="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/montlyReportBtn"
-            android:padding="50px"/>
-
-    <Button
-            android:text="@string/quarterly"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/quarterlyReportBtn"
-            android:padding="50px"/>
-
-    <Button
-            android:text="@string/biannual"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/biannualReportBtn"
-            android:padding="50px"/>
-
+            android:id="@+id/accountForTransfer"/>
     <Button
             android:text="@string/custom_period"
             android:textSize="24sp"
