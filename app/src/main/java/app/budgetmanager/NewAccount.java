@@ -51,15 +51,6 @@ public class NewAccount extends AppCompatActivity {
                 db.addAccount(new Account(accountName, accountType, initialBalance));
 
                 Log.d("Reading: ","Reading all accounts..");
-                List<Account> accounts = db.getAllAccounts();
-
-                for(Account account :accounts)
-                {
-                    String log = "Id: " + account.getId() + " ,Name: " + account.getName() + " , type: " +
-                            account.getType();
-                    // Writing Contacts to log
-                    Log.d("Name: ", log);
-                }
             }
 
         });

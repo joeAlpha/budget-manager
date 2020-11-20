@@ -77,6 +77,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 CATEGORY_ACCOUNT + " TEXT" +
                 ")";
         db.execSQL(CREATE_CATEGORY_TABLE);
+
+        // Default account
+        addAccount(new Account("Default account", "Money", "1000.00"));
     }
 
     // Upgrading database
@@ -132,6 +135,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         );
 
         return account;
+    }
+
+    public List<String> getAllAccountsNames() {
+        List<String> accountNames = new ArrayList<String>();
+        String selectQuery = "SELECT name FROM " + ACCOUNTS_TABLE;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                accountNames.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+
+        return accountNames;
+
     }
 
     public List<Account> getAllAccounts() {
