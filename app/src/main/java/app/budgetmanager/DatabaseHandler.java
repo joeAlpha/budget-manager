@@ -50,7 +50,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_ACCOUNTS = "CREATE TABLE " + ACCOUNTS_TABLE + "(" +
-                ACCOUNT_ID + " INTEGER PRIMARY KEY," +
+                ACCOUNT_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 ACCOUNT_NAME + " TEXT," +
                 ACCOUNT_TYPE + " TEXT," +
                 ACCOUNT_BALANCE + " NUMERIC" +
@@ -58,7 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_ACCOUNTS);
 
         String CREATE_TRANSACTION_TABLE = "CREATE TABLE " + TRANSACTIONS_TABLE + "(" +
-                TRANSACTION_ID + " INTEGER PRIMARY KEY," +
+                TRANSACTION_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 TRANSACTION_TYPE + " TEXT," +
                 TRANSACTION_DATE + " TEXT," +
                 TRANSACTION_LOCATION + " TEXT," +
@@ -72,7 +72,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_TRANSACTION_TABLE);
 
         String CREATE_CATEGORY_TABLE = "CREATE TABLE " + CATEGORY_TABLE + "(" +
-                CATEGORY_ID + " INTEGER PRIMARY KEY," +
+                CATEGORY_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 CATEGORY_NAME + " TEXT," +
                 CATEGORY_ACCOUNT + " TEXT" +
                 ")";
@@ -125,7 +125,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         Account account = new Account(
-                Integer.parseInt(cursor.getString(0)),
+                cursor.getString(0),
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getString(3)
@@ -143,6 +143,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Account account = new Account();
+                account.setId(cursor.getString(0));
                 account.setName(cursor.getString(1));
                 account.setType(cursor.getString(2));
                 account.setBalance(cursor.getString(3));

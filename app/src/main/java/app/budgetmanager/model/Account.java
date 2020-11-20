@@ -1,12 +1,11 @@
 package app.budgetmanager.model;
 
 public class Account {
-    private String name, type, balance;
-    private int id;
+    private String id, name, type, balance;
 
     public Account() {}
 
-    public Account(int id, String name, String type, String balance) {
+    public Account(String id, String name, String type, String balance) {
         this.id = id;
         this.name = name;
         this.type = type ;
@@ -20,12 +19,13 @@ public class Account {
     }
 
     // Getters
-    public int getId() { return this.id; }
+    public String getId() { return this.id; }
     public String getName() { return this.name; }
     public String getType() { return this.type; }
     public String getBalance() { return this.balance; }
 
     // Setters
+    public void setId(String id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setType(String type) { this.type = type; }
     public void setBalance(String balance) { this.balance = balance; }
