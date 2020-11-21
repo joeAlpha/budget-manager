@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         categoriesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCategories = new Intent(MainActivity.this, Categorie.class);
+                Intent intentCategories = new Intent(MainActivity.this, Categories.class);
                 startActivity(intentCategories);
             }
         });

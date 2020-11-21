@@ -202,7 +202,113 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
     // |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-    // TRANSACTIONS METHODS ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    // CATEGORIES METHODS |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    void addCategory(Category category) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(CATEGORY_NAME, category.getName());
+        values.put(CATEGORY_ACCOUNT, category.getAccount());
+
+        db.insert(ACCOUNTS_TABLE, null, values);
+        db.close();
+    }
+
+    Category getCategory(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                ACCOUNTS_TABLE,
+                new String[]{
+                        ACCOUNT_ID,
+                        ACCOUNT_NAME,
+                        ACCOUNT_TYPE,
+                        ACCOUNT_BALANCE
+                },
+                ACCOUNT_ID + "=?",
+                new String[]{
+                        String.valueOf(id)},
+                null,
+                null,
+                null,
+                null
+        );
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Account account = new Account(
+                cursor.getString(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3)
+        );
+
+        return account;
+    }
+
+    public List<String> getAllAccountsNames() {
+        List<String> accountNames = new ArrayList<String>();
+        String selectQuery = "SELECT name FROM " + ACCOUNTS_TABLE;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                accountNames.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+
+        return accountNames;
+
+    }
+
+    public List<Account> getAllAccounts() {
+        List<Account> accountList = new ArrayList<Account>();
+        String selectQuery = "SELECT  * FROM " + ACCOUNTS_TABLE;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Account account = new Account();
+                account.setId(cursor.getString(0));
+                account.setName(cursor.getString(1));
+                account.setType(cursor.getString(2));
+                account.setBalance(cursor.getString(3));
+
+                accountList.add(account);
+            } while (cursor.moveToNext());
+        }
+
+        return accountList;
+    }
+
+    public int updateAccount(Account account) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ACCOUNT_NAME, account.getName());
+        values.put(ACCOUNT_TYPE, account.getName());
+        values.put(ACCOUNT_BALANCE, account.getBalance());
+
+        return db.update(ACCOUNTS_TABLE, values, ACCOUNT_ID + " = ?",
+                new String[]{String.valueOf(account.getId())});
+    }
+
+    public void deleteAccount(Account account) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(ACCOUNTS_TABLE, ACCOUNT_ID + " = ?",
+                new String[]{String.valueOf(account.getId())});
+        db.close();
+    }
+
+    public int getAccountsCount() {
+        String countQuery = "SELECT  * FROM " + ACCOUNTS_TABLE;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.close();
+        return cursor.getCount();
+    }
 
 }
 

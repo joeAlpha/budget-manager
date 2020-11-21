@@ -51,6 +51,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/accountForTransfer"/>
+
+    <Spinner
+            android:layout_marginBottom="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/categoriesForTransfer"/>
     <Button
             android:text="@string/custom_period"
             android:textSize="24sp"

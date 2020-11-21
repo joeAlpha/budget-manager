@@ -5,7 +5,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 // An activity for use others user's account
-public class Categorie extends AppCompatActivity {
+public class Categories extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
