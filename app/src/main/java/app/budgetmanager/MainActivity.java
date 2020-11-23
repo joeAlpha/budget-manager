@@ -1,10 +1,16 @@
 package app.budgetmanager;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import app.budgetmanager.db.DatabaseHandler;
+import app.budgetmanager.model.Account;
+
+import java.util.List;
 
 // A main view with the actions for each account
 public class MainActivity extends AppCompatActivity {
@@ -17,10 +23,40 @@ public class MainActivity extends AppCompatActivity {
             logoutBtn,
             newAccountBtn;
 
+    TextView currentAccountLabel, balanceLabel;
+    DatabaseHandler db;
+    String activeAccountId;
+    Account activeAccount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = new DatabaseHandler(this);
+        //Log.d("Accounts count: ", String.valueOf(db.getAccountsCount()));
+        if (db.getAccountsCount() == 0) {
+            db.addAccount(new Account("Default", "Money", "1000.00"));
+            /*
+            List<Account> test = db.getAllAccounts();
+            for (Account account : test) {
+                Log.d("Account id: ", account.getId());
+            }
+
+             */
+            db.setActiveAccount("1");
+        }
+        //Log.d("Accounts count: ", String.valueOf(db.getAccountsCount()));
+        //Log.d("Active account id: ", db.getActiveAccountId());
+        String activeAccountId = db.getActiveAccountId();
+        Log.d("TEST getactiveaccount()", activeAccountId);
+        activeAccount = db.getAccount(activeAccountId);
+
+        currentAccountLabel = findViewById(R.id.currentAccount);
+        currentAccountLabel.setText(activeAccount.getName());
+
+        balanceLabel = findViewById(R.id.balance);
+        balanceLabel.setText(activeAccount.getBalance());
 
         reportBtn = findViewById(R.id.reportBtn);
         reportBtn.setOnClickListener(new View.OnClickListener() {

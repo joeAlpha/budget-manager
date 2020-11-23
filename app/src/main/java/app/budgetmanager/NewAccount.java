@@ -1,7 +1,6 @@
 package app.budgetmanager;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -9,9 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
+import app.budgetmanager.db.DatabaseHandler;
 import app.budgetmanager.model.Account;
-
-import java.util.List;
 
 public class NewAccount extends AppCompatActivity {
     // Gui elements

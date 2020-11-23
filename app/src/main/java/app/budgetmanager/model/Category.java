@@ -27,6 +27,8 @@ public class Category {
         return account;
     }
 
+    public Category() {}
+
     public Category(String id, String name, String account) {
         this.id = id;
         this.name = name;
