@@ -28,7 +28,7 @@
         <activity android:name=".ScheduledPaid">
         </activity>
 
-        <activity android:name=".Categories">
+        <activity android:name=".ManageCategory">
         </activity>
 
         <activity android:name=".AccountChooser">

@@ -45,6 +45,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String CATEGORY_TABLE = "categories";
     private static final String CATEGORY_ID = "id";
     private static final String CATEGORY_NAME = "name";
+    private static final String CATEGORY_TYPE = "type";
     private static final String CATEGORY_ACCOUNT = "account";
 
 
@@ -85,6 +86,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_CATEGORY_TABLE = "CREATE TABLE " + CATEGORY_TABLE + "(" +
                 CATEGORY_ID + " INTEGER PRIMARY KEY NOT NULL," +
                 CATEGORY_NAME + " TEXT," +
+                CATEGORY_TYPE + " TEXT, " +
                 CATEGORY_ACCOUNT + " TEXT" +
                 ")";
 
@@ -259,9 +261,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(CATEGORY_NAME, category.getName());
+        values.put(CATEGORY_TYPE, category.getType());
         values.put(CATEGORY_ACCOUNT, category.getAccount());
 
-        db.insert(ACCOUNTS_TABLE, null, values);
+        db.insert(CATEGORY_TABLE, null, values);
     }
 
     public Category getCategory(String id) {
@@ -300,19 +303,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if (cursor.moveToFirst()) {
+        if (cursor != null && cursor.moveToFirst()) {
             do {
-                categoriesNames.add(cursor.getString(0));
+                categoriesNames.add(cursor.getString(2));
             } while (cursor.moveToNext());
+            cursor.close();
         }
 
         return categoriesNames;
-
     }
 
     public List<Category> getAllCategories() {
         List<Category> categoryList = new ArrayList<Category>();
-        String selectQuery = "SELECT  * FROM " + ACCOUNTS_TABLE;
+        String selectQuery = "SELECT * FROM " + CATEGORY_TABLE;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -321,8 +324,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Category category = new Category();
                 category.setId(cursor.getString(0));
                 category.setName(cursor.getString(1));
-                category.setAccount(cursor.getString(2));
+                category.setType(cursor.getString(2));
+                category.setAccount(cursor.getString(3));
                 categoryList.add(category);
+                Log.d("Fetched: ", category.getName());
             } while (cursor.moveToNext());
         }
 

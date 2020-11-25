@@ -3,10 +3,7 @@ package app.budgetmanager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import app.budgetmanager.db.DatabaseHandler;
 import app.budgetmanager.model.Account;
@@ -19,7 +16,6 @@ public class NewAccount extends AppCompatActivity {
 
     // Values to be inserted
     String accountName, accountType;
-    final String initialBalance = "1000.00";
     private DatabaseHandler db;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +42,8 @@ public class NewAccount extends AppCompatActivity {
                 accountType = accountTypeOptions.getSelectedItem().toString();
 
                 // Insertion in DB
-                db.addAccount(new Account(accountName, accountType, initialBalance));
-
-                Log.d("Reading: ","Reading all accounts..");
+                db.addAccount(new Account(accountName, accountType));
+                Toast.makeText(getApplicationContext(),accountName + " registered successfully!",Toast.LENGTH_SHORT).show();
             }
 
         });

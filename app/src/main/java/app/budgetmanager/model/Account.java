@@ -12,10 +12,10 @@ public class Account {
         this.balance = balance;
     }
 
-    public Account(String name, String type, String balance) {
+    public Account(String name, String type) {
         this.name = name;
         this.type = type ;
-        this.balance = balance;
+        this.balance = "1000.00";
     }
 
     // Getters

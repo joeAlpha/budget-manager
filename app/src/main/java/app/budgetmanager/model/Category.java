@@ -1,8 +1,18 @@
 package app.budgetmanager.model;
 
 public class Category {
-    String id, name, account;
+    String id;
+    String name;
+    String type;
+    String account;
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
     public void setId(String id) {
         this.id = id;
     }
@@ -29,15 +39,16 @@ public class Category {
 
     public Category() {}
 
-    public Category(String id, String name, String account) {
+    public Category(String id, String name, String type, String account) {
         this.id = id;
         this.name = name;
+        this.type = type;
         this.account = account;
     }
 
-    public Category(String name, String account) {
-        this.id = id;
+    public Category(String name, String type, String account) {
         this.name = name;
+        this.type = type;
         this.account = account;
     }
 }

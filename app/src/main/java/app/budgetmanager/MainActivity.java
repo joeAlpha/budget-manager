@@ -1,7 +1,6 @@
 package app.budgetmanager;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,8 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import app.budgetmanager.db.DatabaseHandler;
 import app.budgetmanager.model.Account;
-
-import java.util.List;
+import app.budgetmanager.ui.AccountStatusMonitor;
 
 // A main view with the actions for each account
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView currentAccountLabel, balanceLabel;
     DatabaseHandler db;
-    String activeAccountId;
+    AccountStatusMonitor accountStatusMonitor;
     Account activeAccount;
 
     @Override
@@ -34,29 +32,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = new DatabaseHandler(this);
-        //Log.d("Accounts count: ", String.valueOf(db.getAccountsCount()));
-        if (db.getAccountsCount() == 0) {
-            db.addAccount(new Account("Default", "Money", "1000.00"));
-            /*
-            List<Account> test = db.getAllAccounts();
-            for (Account account : test) {
-                Log.d("Account id: ", account.getId());
-            }
 
-             */
+        // Executes once the first start up
+        if (db.getAccountsCount() == 0) {
+            db.addAccount(new Account("Default", "Money"));
             db.setActiveAccount("1");
         }
-        //Log.d("Accounts count: ", String.valueOf(db.getAccountsCount()));
-        //Log.d("Active account id: ", db.getActiveAccountId());
-        String activeAccountId = db.getActiveAccountId();
-        Log.d("TEST getactiveaccount()", activeAccountId);
-        activeAccount = db.getAccount(activeAccountId);
 
+        activeAccount = db.getAccount(db.getActiveAccountId());
+
+        // General account status
         currentAccountLabel = findViewById(R.id.currentAccount);
-        currentAccountLabel.setText(activeAccount.getName());
-
+        currentAccountLabel.setText("Account: " + activeAccount.getName());
         balanceLabel = findViewById(R.id.balance);
-        balanceLabel.setText(activeAccount.getBalance());
+        balanceLabel.setText("$" + activeAccount.getBalance());
 
         reportBtn = findViewById(R.id.reportBtn);
         reportBtn.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         categoriesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCategories = new Intent(MainActivity.this, Categories.class);
+                Intent intentCategories = new Intent(MainActivity.this, ManageCategory.class);
                 startActivity(intentCategories);
             }
         });

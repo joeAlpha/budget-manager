@@ -16,4 +16,6 @@
     <string name="switch_account">Switch account</string>
     <string name="logout">Logout</string>
     <string name="new_account_name_field">New account name</string>
+    <string name="new_category_name">New category name</string>
+    <string name="account">Account :</string>
 </resources>
