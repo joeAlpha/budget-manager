@@ -12,7 +12,7 @@ import app.budgetmanager.ui.AccountStatusMonitor;
 
 // A main view with the actions for each account
 public class MainActivity extends AppCompatActivity {
-    Button transferBtn,
+    Button transactionBtn,
             reportBtn,
             depositBtn,
             scheduledPaidsBtn,
@@ -56,21 +56,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        transferBtn = findViewById(R.id.transferBtn);
-        transferBtn.setOnClickListener(new View.OnClickListener() {
+        transactionBtn = findViewById(R.id.transaction_button);
+        transactionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentTransfer = new Intent(MainActivity.this, Transfer.class);
-                startActivity(intentTransfer);
-            }
-        });
-
-        depositBtn = findViewById(R.id.depositBtn);
-        depositBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentDeposit = new Intent(MainActivity.this, Deposit.class);
-                startActivity(intentDeposit);
+                Intent intentTransaction = new Intent(MainActivity.this, Transaction.class);
+                startActivity(intentTransaction);
             }
         });
 

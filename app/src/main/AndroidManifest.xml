@@ -19,10 +19,7 @@
         <activity android:name=".Report">
         </activity>
 
-        <activity android:name=".Deposit">
-        </activity>
-
-        <activity android:name=".Transfer">
+        <activity android:name=".Transaction">
         </activity>
 
         <activity android:name=".ScheduledPaid">

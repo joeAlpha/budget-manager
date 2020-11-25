@@ -56,20 +56,11 @@
             android:padding="10dp"/>
 
     <Button
-            android:text="@string/deposit"
+            android:text="@string/make_transaction"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/depositBtn"
-            android:padding="10dp"
-            />
-
-    <Button
-            android:text="@string/transfer"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transferBtn"
+            android:id="@+id/transaction_button"
             android:padding="10dp"
             />
 
