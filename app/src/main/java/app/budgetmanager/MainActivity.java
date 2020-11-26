@@ -19,11 +19,6 @@ public class MainActivity extends AppCompatActivity {
             accountManagerBtn,
             logoutBtn;
 
-    TextView currentAccountLabel, balanceLabel;
-    DatabaseHandler db;
-    AccountStatusMonitor accountStatusMonitor;
-    Account activeAccount;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

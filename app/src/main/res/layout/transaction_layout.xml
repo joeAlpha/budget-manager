@@ -5,130 +5,98 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
+    <fragment
+            android:name="app.budgetmanager.ui.AccountStatusMonitor"
+            android:id="@+id/account_status_fragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:theme="?attr/actionBarTheme"
-            android:minHeight="?attr/actionBarSize"
-            android:layout_marginBottom="50px"
-            android:id="@+id/toolbar2">
-
-        <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                >
-
-            <TextView
-                    android:text="@string/account"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/current_account_label"
-                    android:textSize="18sp"
-                    android:layout_weight="1"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/balance"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/account_balance_label"
-                    android:textSize="18sp"
-                    android:textAlignment="textEnd"/>
-
-
-        </LinearLayout>
-    </androidx.appcompat.widget.Toolbar>
+            android:layout_height="wrap_content"/>
 
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinearLayout
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <Spinner
+                    android:layout_marginBottom="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:id="@+id/transaction_type"/>
 
-                <Spinner
-                        android:layout_marginBottom="20sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/transaction_type"/>
+            <Spinner
+                    android:layout_marginBottom="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/account_spin"/>
 
-                <Spinner
-                        android:layout_marginBottom="20sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/account_spin"/>
+            <Spinner
+                    android:layout_marginBottom="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/category_spin"/>
 
-                <Spinner
-                        android:layout_marginBottom="20sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/category_spin"/>
+            <EditText
+                    android:layout_marginBottom="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/ammount_field"
+                    android:hint="$ 00.00"
+                    />
 
-                <EditText
-                        android:layout_marginBottom="20sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:id="@+id/ammount_field"
-                        android:hint="$ 00.00"
-                        />
+            <EditText
+                    android:layout_marginBottom="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:id="@+id/concept_field"
+                    android:hint="Concept"
+                    />
 
-                <EditText
-                        android:layout_marginBottom="20sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:id="@+id/concept_field"
-                        android:hint="Concept"
-                        />
+            <EditText
+                    android:layout_marginBottom="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:id="@+id/beneficiary_field"
+                    android:hint="Beneficiary"
+                    />
 
-                <EditText
-                        android:layout_marginBottom="20sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:id="@+id/beneficiary_field"
-                        android:hint="Beneficiary"
-                        />
+            <EditText
+                    android:layout_marginBottom="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:id="@+id/notes_field"
+                    android:hint="Notes"
+                    />
 
-                <EditText
-                        android:layout_marginBottom="20sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:id="@+id/notes_field"
-                        android:hint="Notes"
-                        />
+            <CheckedTextView
+                    android:text="Schedule transaction?"
+                    android:checkMark="@drawable/ic_baseline_check_circle_24"
+                    android:checked="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/schedule_transaction_check"/>
 
-                <CheckedTextView
-                        android:text="Schedule transaction?"
-                        android:checkMark="@drawable/ic_baseline_check_circle_24"
-                        android:checked="false"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/schedule_transaction_check"/>
+            <CalendarView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/calendarView"/>
 
-                <CalendarView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/calendarView"/>
-
-                <Button
-                        android:text="@string/ok"
-                        android:textSize="24sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/procced_with_transaction"
-                        android:padding="25dp"/>
-            </LinearLayout>
+            <Button
+                    android:text="@string/ok"
+                    android:textSize="24sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/procced_with_transaction"
+                    android:padding="25dp"/>
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

@@ -45,11 +45,6 @@ public class AccountStatusMonitor extends Fragment {
         accountBalanceLabel.setText("$" + account.getBalance());
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
     public void refreshStatus() {
         currentAccountLabel.setText("Account: " + account.getName());
         accountBalanceLabel.setText("$" + account.getBalance());
