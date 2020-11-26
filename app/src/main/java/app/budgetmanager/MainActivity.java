@@ -15,8 +15,6 @@ import app.budgetmanager.ui.AccountStatusMonitor;
 public class MainActivity extends AppCompatActivity {
     Button transactionBtn,
             reportBtn,
-            depositBtn,
-            scheduledPaidsBtn,
             categoriesBtn,
             accountManagerBtn,
             logoutBtn;
@@ -30,24 +28,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        db = new DatabaseHandler(this);
-
-        // Executes once the first start up
-        if (db.getAccountsCount() == 0) {
-            db.addAccount(new Account("Default", "Money"));
-            db.addCategory(new Category("MyExpense", "Expenses", "1"));
-            db.addCategory(new Category("MyPayment", "Payment", "1"));
-            db.setActiveAccount("1");
-        }
-
-        activeAccount = db.getAccount(db.getActiveAccountId());
-
-        // General account status
-        currentAccountLabel = findViewById(R.id.currentAccount);
-        currentAccountLabel.setText("Account: " + activeAccount.getName());
-        balanceLabel = findViewById(R.id.balance);
-        balanceLabel.setText("$" + activeAccount.getBalance());
 
         reportBtn = findViewById(R.id.reportBtn);
         reportBtn.setOnClickListener(new View.OnClickListener() {
