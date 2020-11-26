@@ -46,35 +46,34 @@
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <Button
-            android:text="@string/montly"
-            android:textSize="24sp"
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/montlyReportBtn"
-            android:padding="50px"/>
+            android:layout_height="wrap_content">
 
-    <Button
-            android:text="@string/quarterly"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/quarterlyReportBtn"
-            android:padding="50px"/>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <Button
-            android:text="@string/biannual"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/biannualReportBtn"
-            android:padding="50px"/>
 
-    <Button
-            android:text="@string/custom_period"
-            android:textSize="24sp"
+            <Spinner
+                    android:id="@+id/report_account_spin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+            </Spinner>
+
+            <Spinner
+                    android:id="@+id/report_filter_spin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+            </Spinner>
+        </LinearLayout>
+    </ScrollView>
+
+    <ListView
+            android:id="@+id/report_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/customPeriodBtn"
-            android:padding="50px"/>
+            android:layout_height="wrap_content">
+
+    </ListView>
 </LinearLayout>

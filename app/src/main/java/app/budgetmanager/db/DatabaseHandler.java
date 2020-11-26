@@ -380,7 +380,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TRANSACTIONS_TABLE, null, values);
     }
 
-    /*
     public Category getTransaction(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -412,26 +411,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public List<Transaction> getAllTransactions() {
-        List<Category> categoryList = new ArrayList<Category>();
-        String selectQuery = "SELECT * FROM " + CATEGORY_TABLE;
+        List<Transaction> transactionList = new ArrayList<Transaction>();
+        String selectQuery = "SELECT * FROM " + TRANSACTIONS_TABLE;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {
-                Category category = new Category();
-                category.setId(cursor.getString(0));
-                category.setName(cursor.getString(1));
-                category.setType(cursor.getString(2));
-                category.setAccount(cursor.getString(3));
-                categoryList.add(category);
-                Log.d("Fetched: ", category.getName());
+                Transaction transaction = new Transaction(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8),
+                        cursor.getString(9)
+                );
+                transactionList.add(transaction);
+                Log.d("Fetched: ", transaction.getConcept());
             } while (cursor.moveToNext());
         }
 
-        return categoryList;
+        return transactionList;
     }
 
+    /*
     public int updateTransaction(Transaction transaction) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -457,7 +464,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
         return cursor.getCount();
     }
-
      */
+
 }
 
