@@ -85,19 +85,28 @@ public class AccountManager extends AppCompatActivity {
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int item) {
+                        String accountId = String.valueOf(accounts.get(itemPosition).getId());
+
                         if (item == 0) {
-                            if(accounts.get(itemPosition).getId().equals("1")) {
+                            if (accounts.get(itemPosition).getId().equals("1")) {
                                 Toast.makeText(
                                         getApplicationContext(),
                                         "You can't delete the default account!",
                                         Toast.LENGTH_SHORT).show();
                             } else {
-                            db.deleteAccount(String.valueOf(accounts.get(itemPosition).getId()));
+                                db.deleteAccount(accountId);
+                                db.deleteAccountCategories(accountId);
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "Account and categories associated with it was deleted!",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        } else if(item == 1) {
+                            db.setActiveAccount(accountId);
                             Toast.makeText(
                                     getApplicationContext(),
-                                    "Account deleted!",
+                                    "New account selected",
                                     Toast.LENGTH_SHORT).show();
-                            }
                         }
                     }
                 });

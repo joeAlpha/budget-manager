@@ -349,10 +349,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[]{String.valueOf(account.getId())});
     }
 
-    public void deleteCategory(Account account) {
+    public void deleteCategory(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(ACCOUNTS_TABLE, ACCOUNT_ID + " = ?",
-                new String[]{String.valueOf(account.getId())});
+        db.delete(CATEGORY_TABLE, CATEGORY_ID + " = ?",
+                new String[]{id});
+    }
+
+    public void deleteAccountCategories(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(CATEGORY_TABLE, CATEGORY_ACCOUNT + " = ?",
+                new String[]{id});
     }
 
     public int getCategoriesCount() {
