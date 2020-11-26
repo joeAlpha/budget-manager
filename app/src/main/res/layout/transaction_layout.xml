@@ -26,8 +26,8 @@
                     android:text="Account balance: "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView"
-                    android:textSize="24sp"
+                    android:id="@+id/currentAccount"
+                    android:textSize="18dp"
                     android:layout_weight="1"/>
 
             <TextView
@@ -39,44 +39,96 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/balance"
-                    android:textSize="30sp"
+                    android:textSize="18dp"
                     android:textAlignment="textEnd"/>
 
 
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <Spinner
-            android:layout_marginBottom="20sp"
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transaction_type"/>
+            android:layout_height="wrap_content">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-    <Spinner
-            android:layout_marginBottom="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/account_spin"/>
+                <Spinner
+                        android:layout_marginBottom="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/transaction_type"/>
 
-    <Spinner
-            android:layout_marginBottom="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/category_spin"/>
+                <Spinner
+                        android:layout_marginBottom="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/account_spin"/>
 
-    <EditText
-            android:layout_marginBottom="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:id="@+id/ammount"
-            />
+                <Spinner
+                        android:layout_marginBottom="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/category_spin"/>
 
-    <Button
-            android:text="@string/custom_period"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/customPeriodBtn"
-            android:padding="50px"/>
+                <EditText
+                        android:layout_marginBottom="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:id="@+id/ammount_field"
+                        android:hint="$ 00.00"
+                        />
+
+                <EditText
+                        android:layout_marginBottom="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:id="@+id/concept_field"
+                        android:hint="Concept"
+                        />
+
+                <EditText
+                        android:layout_marginBottom="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:id="@+id/beneficiary_field"
+                        android:hint="Beneficiary"
+                        />
+
+                <EditText
+                        android:layout_marginBottom="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:id="@+id/notes_field"
+                        android:hint="Notes"
+                        />
+
+                <CheckedTextView
+                        android:text="Schedule transaction?"
+                        android:checkMark="@drawable/ic_baseline_check_circle_24"
+                        android:checked="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/schedule_transaction_check"/>
+
+                <CalendarView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/calendarView"/>
+
+                <Button
+                        android:text="@string/ok"
+                        android:textSize="24sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/procced_with_transaction"
+                        android:padding="25dp"/>
+            </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

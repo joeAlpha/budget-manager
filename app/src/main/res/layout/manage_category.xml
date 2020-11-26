@@ -47,6 +47,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <EditText
+            android:hint="Category name"
             android:layout_marginBottom="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

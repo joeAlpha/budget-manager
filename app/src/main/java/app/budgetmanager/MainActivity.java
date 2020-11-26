@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import app.budgetmanager.db.DatabaseHandler;
 import app.budgetmanager.model.Account;
+import app.budgetmanager.model.Category;
 import app.budgetmanager.ui.AccountStatusMonitor;
 
 // A main view with the actions for each account
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         // Executes once the first start up
         if (db.getAccountsCount() == 0) {
             db.addAccount(new Account("Default", "Money"));
+            db.addCategory(new Category("MyExpense", "Expenses", "1"));
+            db.addCategory(new Category("MyPayment", "Payment", "1"));
             db.setActiveAccount("1");
         }
 
@@ -60,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         transactionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentTransaction = new Intent(MainActivity.this, Transaction.class);
+                Intent intentTransaction = new Intent(MainActivity.this, TransactionActivity.class);
                 startActivity(intentTransaction);
             }
         });

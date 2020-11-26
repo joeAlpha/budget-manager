@@ -19,4 +19,5 @@
     <string name="new_category_name">New category name</string>
     <string name="account">Account :</string>
     <string name="make_transaction">Make transaction</string>
+    <string name="ok">OK</string>
 </resources>

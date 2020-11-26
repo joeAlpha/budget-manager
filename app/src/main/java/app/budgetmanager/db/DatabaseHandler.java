@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import app.budgetmanager.model.Transaction;
 import app.budgetmanager.model.Account;
 import app.budgetmanager.model.Category;
 
@@ -360,5 +361,103 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
+
+    // TRANSACTIONS METHODS ||||||||||||||||||||||||||||||||||||||||||
+    public void addTransaction(Transaction transaction) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(TRANSACTION_TYPE, transaction.getType());
+        values.put(TRANSACTION_DATE, transaction.getDate());
+        values.put(TRANSACTION_LOCATION, transaction.getLocation());
+        values.put(TRANSACTION_CONCEPT, transaction.getConcept());
+        values.put(TRANSACTION_BENEFICIARY, transaction.getBeneficiary());
+        values.put(TRANSACTION_NOTES, transaction.getNotes());
+        values.put(TRANSACTION_SCHEDULED, transaction.getScheduled());
+        values.put(TRANSACTION_ACCOUNT, transaction.getAccount());
+        values.put(TRANSACTION_CATEGORY, transaction.getCategory());
+
+        db.insert(TRANSACTIONS_TABLE, null, values);
+    }
+
+    /*
+    public Category getTransaction(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                ACCOUNTS_TABLE,
+                new String[]{
+                        CATEGORY_ID,
+                        CATEGORY_NAME,
+                        CATEGORY_ACCOUNT
+                },
+                CATEGORY_ID + "=?",
+                new String[]{
+                        id},
+                null,
+                null,
+                null,
+                null
+        );
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Category category = new Category(
+                cursor.getString(0),
+                cursor.getString(1),
+                cursor.getString(2)
+        );
+
+        return category;
+    }
+
+    public List<Transaction> getAllTransactions() {
+        List<Category> categoryList = new ArrayList<Category>();
+        String selectQuery = "SELECT * FROM " + CATEGORY_TABLE;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Category category = new Category();
+                category.setId(cursor.getString(0));
+                category.setName(cursor.getString(1));
+                category.setType(cursor.getString(2));
+                category.setAccount(cursor.getString(3));
+                categoryList.add(category);
+                Log.d("Fetched: ", category.getName());
+            } while (cursor.moveToNext());
+        }
+
+        return categoryList;
+    }
+
+    public int updateTransaction(Transaction transaction) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ACCOUNT_NAME, account.getName());
+        values.put(ACCOUNT_TYPE, account.getName());
+        values.put(ACCOUNT_BALANCE, account.getBalance());
+
+        return db.update(ACCOUNTS_TABLE, values, ACCOUNT_ID + " = ?",
+                new String[]{String.valueOf(account.getId())});
+    }
+
+    public void deleteTransaction(Transaction transaction) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(ACCOUNTS_TABLE, ACCOUNT_ID + " = ?",
+                new String[]{String.valueOf(account.getId())});
+    }
+
+    public int getTransactionCount() {
+        String countQuery = "SELECT  * FROM " + ACCOUNTS_TABLE;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.close();
+        return cursor.getCount();
+    }
+
+     */
 }
 
