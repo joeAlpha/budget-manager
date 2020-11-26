@@ -32,6 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Transaction (Includes deposits n transfers) table fields
     private static final String TRANSACTIONS_TABLE = "transactions";
     private static final String TRANSACTION_ID = "id";
+    private static final String TRANSACTION_AMMOUNT = "ammount";
     private static final String TRANSACTION_TYPE = "type";
     private static final String TRANSACTION_DATE = "date";
     private static final String TRANSACTION_LOCATION = "location";
@@ -73,6 +74,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         String CREATE_TRANSACTION_TABLE = "CREATE TABLE " + TRANSACTIONS_TABLE + "(" +
                 TRANSACTION_ID + " INTEGER PRIMARY KEY NOT NULL," +
+                TRANSACTION_AMMOUNT + " TEXT," +
                 TRANSACTION_TYPE + " TEXT," +
                 TRANSACTION_DATE + " TEXT," +
                 TRANSACTION_LOCATION + " TEXT," +
@@ -367,6 +369,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(TRANSACTION_AMMOUNT, transaction.getAmmount());
         values.put(TRANSACTION_TYPE, transaction.getType());
         values.put(TRANSACTION_DATE, transaction.getDate());
         values.put(TRANSACTION_LOCATION, transaction.getLocation());
@@ -428,10 +431,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         cursor.getString(6),
                         cursor.getString(7),
                         cursor.getString(8),
-                        cursor.getString(9)
+                        cursor.getString(9),
+                        cursor.getString(10)
                 );
                 transactionList.add(transaction);
-                Log.d("Fetched: ", transaction.getConcept());
             } while (cursor.moveToNext());
         }
 

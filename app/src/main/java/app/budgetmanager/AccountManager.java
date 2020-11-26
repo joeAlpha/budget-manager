@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import app.budgetmanager.db.DatabaseHandler;
 import app.budgetmanager.model.Account;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // An activity for use others user's account
@@ -66,7 +67,10 @@ public class AccountManager extends AppCompatActivity {
         listView = findViewById(R.id.accounts_list);
         db = new DatabaseHandler(this);
         List<String> accounts = db.getAllAccountsNames();
-        ArrayAdapter<String> accountsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, accounts);
-        listView.setAdapter(accountsAdapter);
+       // ArrayAdapter<String> accountsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, accounts);
+        //listView.setAdapter(accountsAdapter);
+        ActionListView actionListView = new ActionListView((ArrayList<String>) accounts, this);
+        listView.setAdapter(actionListView);
+
     }
 }

@@ -67,15 +67,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        scheduledPaidsBtn = findViewById(R.id.schedulePaidsBtn);
-        scheduledPaidsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentScheduledPaids = new Intent(MainActivity.this, ScheduledPaid.class);
-                startActivity(intentScheduledPaids);
-            }
-        });
-
         categoriesBtn = findViewById(R.id.categoriesBtn);
         categoriesBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -27,9 +27,6 @@
         <activity android:name=".TransactionActivity">
         </activity>
 
-        <activity android:name=".ScheduledPaid">
-        </activity>
-
         <activity android:name=".ManageCategory">
         </activity>
 

@@ -73,14 +73,6 @@
             android:padding="10dp"/>
 
     <Button
-            android:text="@string/schedule_paids"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/schedulePaidsBtn"
-            android:padding="10dp"/>
-
-    <Button
             android:text="@string/account_manager"
             android:textSize="24sp"
             android:layout_width="match_parent"
