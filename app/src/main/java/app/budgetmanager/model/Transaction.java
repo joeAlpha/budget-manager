@@ -2,6 +2,9 @@ package app.budgetmanager.model;
 
 public class Transaction {
     String id;
+
+
+    String ammount;
     String type;
     String date;
     String location;
@@ -12,8 +15,9 @@ public class Transaction {
     String account;
     String category;
 
-    public Transaction(String id, String type, String date, String location, String concept, String beneficiary, String notes, String scheduled, String account, String category) {
+    public Transaction(String id, String ammount, String type, String date, String location, String concept, String beneficiary, String notes, String scheduled, String account, String category) {
         this.id = id;
+        this.ammount = ammount;
         this.type = type;
         this.date = date;
         this.location = location;
@@ -25,7 +29,8 @@ public class Transaction {
         this.category = category;
     }
 
-    public Transaction(String type, String date, String location, String concept, String beneficiary, String notes, String scheduled, String account, String category) {
+    public Transaction(String ammount, String type, String date, String location, String concept, String beneficiary, String notes, String scheduled, String account, String category) {
+        this.ammount = ammount;
         this.type = type;
         this.date = date;
         this.location = location;
@@ -35,6 +40,10 @@ public class Transaction {
         this.scheduled = scheduled;
         this.account = account;
         this.category = category;
+    }
+
+    public String getAmmount() {
+        return ammount;
     }
 
     public String getId() {
@@ -79,6 +88,11 @@ public class Transaction {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    public void setAmmount(String ammount) {
+        this.ammount = ammount;
     }
 
     public void setType(String type) {

@@ -26,7 +26,7 @@
                     android:text="Account balance: "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView"
+                    android:id="@+id/current_account_label"
                     android:textSize="24sp"
                     android:layout_weight="1"/>
 
@@ -38,7 +38,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/balance"
+                    android:id="@+id/account_balance_label"
                     android:textSize="30sp"
                     android:textAlignment="textEnd"/>
 

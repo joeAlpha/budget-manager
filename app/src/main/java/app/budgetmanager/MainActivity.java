@@ -18,9 +18,8 @@ public class MainActivity extends AppCompatActivity {
             depositBtn,
             scheduledPaidsBtn,
             categoriesBtn,
-            switchAccountBtn,
-            logoutBtn,
-            newAccountBtn;
+            accountManagerBtn,
+            logoutBtn;
 
     TextView currentAccountLabel, balanceLabel;
     DatabaseHandler db;
@@ -86,24 +85,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        switchAccountBtn = findViewById(R.id.switchAccountBtn);
-        switchAccountBtn.setOnClickListener(new View.OnClickListener() {
+        accountManagerBtn = findViewById(R.id.account_manager_btn);
+        accountManagerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentSwitchAccount = new Intent(MainActivity.this, AccountChooser.class);
+                Intent intentSwitchAccount = new Intent(MainActivity.this, AccountManager.class);
                 startActivity(intentSwitchAccount);
             }
 
         });
 
-        newAccountBtn = findViewById(R.id.newAccountBtn);
-        newAccountBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent newAccountIntent = new Intent(MainActivity.this, NewAccount.class);
-                startActivity(newAccountIntent);
-            }
-        });
         logoutBtn = findViewById(R.id.logoutBtn);
     }
 }

@@ -81,19 +81,11 @@
             android:padding="10dp"/>
 
     <Button
-            android:text="@string/new_account"
+            android:text="@string/account_manager"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/newAccountBtn"
-            android:padding="10dp"/>
-
-    <Button
-            android:text="@string/switch_account"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/switchAccountBtn"
+            android:id="@+id/account_manager_btn"
             android:padding="10dp"/>
 
     <Button

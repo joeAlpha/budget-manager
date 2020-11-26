@@ -33,11 +33,9 @@
         <activity android:name=".ManageCategory">
         </activity>
 
-        <activity android:name=".AccountChooser">
+        <activity android:name=".AccountManager">
         </activity>
 
-        <activity android:name=".NewAccount">
-        </activity>
     </application>
 
 </manifest>

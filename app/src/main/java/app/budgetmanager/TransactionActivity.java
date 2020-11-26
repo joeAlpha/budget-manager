@@ -1,11 +1,8 @@
 package app.budgetmanager;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,9 +54,9 @@ public class TransactionActivity extends AppCompatActivity {
         account = db.getAccount(db.getActiveAccountId());
 
         // Status >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        currentAccountLabel = findViewById(R.id.currentAccount);
+        currentAccountLabel = findViewById(R.id.current_account_label);
         currentAccountLabel.setText("Account: " + account.getName());
-        balanceLabel = findViewById(R.id.balance);
+        balanceLabel = findViewById(R.id.account_balance_label);
         balanceLabel.setText("$" + account.getBalance());
 
         // Location initialization >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -107,27 +104,7 @@ public class TransactionActivity extends AppCompatActivity {
 
         getLocation();
 
-        /*
-        btnLocation.setOnClickListener(v -> {
-
-            if (!isGPS) {
-                Toast.makeText(this, "Please turn on GPS", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            isContinue = false;
-            getLocation();
-        });
-
-        btnContinueLocation.setOnClickListener(v -> {
-            if (!isGPS) {
-                Toast.makeText(this, "Please turn on GPS", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            isContinue = true;
-            stringBuilder = new StringBuilder();
-            getLocation();
-        });
-         */
+        ammountField = findViewById(R.id.ammount_field);
 
         // Transaction's type
         transactionType = (Spinner) findViewById(R.id.transaction_type);
@@ -173,6 +150,8 @@ public class TransactionActivity extends AppCompatActivity {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String ammount = ammountField.getText().toString();
+
                 // Type
                 String type = transactionType.getSelectedItem().toString();
 
@@ -199,6 +178,7 @@ public class TransactionActivity extends AppCompatActivity {
                 String category = categorySpin.getSelectedItem().toString();
 
                 Transaction transaction = new Transaction(
+                        ammount,
                         type,
                         currentDateAndTime,
                         coordinates,

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import app.budgetmanager.db.DatabaseHandler;
 import app.budgetmanager.model.Account;
@@ -19,6 +20,8 @@ public class ReportActivity extends AppCompatActivity {
     ListView reportListView;
     Spinner reportFilterSpin, reportAccountSpin;
     DatabaseHandler db;
+    TextView currentAccountLabel, balanceLabel;
+    Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,13 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reports_layout);
         db = new DatabaseHandler(this);
+        account = db.getAccount(db.getActiveAccountId());
+
+        // Status >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        currentAccountLabel = findViewById(R.id.current_account_label);
+        currentAccountLabel.setText("Account: " + account.getName());
+        balanceLabel = findViewById(R.id.account_balance_label);
+        balanceLabel.setText("$" + account.getBalance());
 
         reportAccountSpin = findViewById(R.id.report_account_spin);
         List<Account> accounts = db.getAllAccounts();
@@ -54,9 +64,15 @@ public class ReportActivity extends AppCompatActivity {
         List<String> transactionData = new ArrayList<String>();
         for (Transaction transaction : transactions) {
             transactionData.add(
-                    "Concept: " + transaction.getConcept() +
-                            "\nType: " + transaction.getType() +
-                            "\nDate: " + transaction.getDate());
+                    "Account: " + transaction.getAccount() +
+                            "\nCategory: " + transaction.getCategory() +
+                            "\nAmmount: $" + transaction.getAmmount() +
+                            "\nDate: " + transaction.getDate() +
+                            "\nLocation: " + transaction.getLocation() +
+                            "\nConcept: " + transaction.getConcept() +
+                            "\nBeneficiary: " + transaction.getBeneficiary() +
+                            "\nNotes: " + transaction.getNotes()
+            );
         }
         ArrayAdapter<String> reportsAdapter = new ArrayAdapter<String>(
                 this,
