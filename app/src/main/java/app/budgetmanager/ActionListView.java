@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import app.budgetmanager.db.DatabaseHandler;
 
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -15,11 +16,15 @@ import java.util.ArrayList;
 public class ActionListView extends BaseAdapter implements ListAdapter {
     private ArrayList<String> list;
     private Context context;
+    private String identity;
+    private DatabaseHandler db;
 
 
-    public ActionListView(ArrayList<String> list, Context context) {
+    public ActionListView(ArrayList<String> list, Context context, String identity, DatabaseHandler db) {
         this.list = list;
         this.context = context;
+        this.identity = identity;
+        this.db = db;
     }
 
     @Override
@@ -61,6 +66,9 @@ public class ActionListView extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //do something
+                switch (identity) {
+                    case "ACCOUNT":
+                }
                 list.remove(position); //or some other task
                 notifyDataSetChanged();
             }

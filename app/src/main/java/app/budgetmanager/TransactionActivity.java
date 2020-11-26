@@ -156,7 +156,7 @@ public class TransactionActivity extends AppCompatActivity {
                 String type = transactionType.getSelectedItem().toString();
 
                 // Date n' time
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss z");
                 String currentDateAndTime = sdf.format(new Date());
 
                 // Concept
