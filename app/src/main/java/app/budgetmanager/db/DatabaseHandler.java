@@ -239,10 +239,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[]{String.valueOf(account.getId())});
     }
 
-    public void deleteAccount(Account account) {
+    public void deleteAccount(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(ACCOUNTS_TABLE, ACCOUNT_ID + " = ?",
-                new String[]{String.valueOf(account.getId())});
+                new String[]{id});
     }
 
     public int getAccountsCount() {

@@ -2,7 +2,6 @@ package app.budgetmanager;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
@@ -33,7 +32,7 @@ public class AccountManager extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.account_chooser);
+        setContentView(R.layout.account_manager_layout);
 
         db = new DatabaseHandler(this);
         account = db.getAccount(db.getActiveAccountId());
@@ -63,16 +62,19 @@ public class AccountManager extends AppCompatActivity {
 
                 // Insertion in DB
                 db.addAccount(new Account(accountName, accountType));
+
                 Toast.makeText(getApplicationContext(), accountName + " registered successfully!", Toast.LENGTH_SHORT).show();
             }
 
         });
 
         db = new DatabaseHandler(this);
-        List<String> accounts = db.getAllAccountsNames();
-
+        List<Account> accounts = db.getAllAccounts();
+        List<String> accountsData = new ArrayList<String>();
+        for (Account account : accounts)
+            accountsData.add(account.getName() + " (" + account.getType() + ")");
         listView = findViewById(R.id.accounts_list);
-        ArrayAdapter<String> accountsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, accounts);
+        ArrayAdapter<String> accountsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, accountsData);
         listView.setAdapter(accountsAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,9 +85,12 @@ public class AccountManager extends AppCompatActivity {
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int item) {
-                        switch (item) {
-                            case 1:
-                                Log.d("Selection", "Item selected: " + item);
+                        if (item == 1) {
+                            db.deleteAccount(String.valueOf(accounts.get(itemPosition).getId()));
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    "Account deleted!",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

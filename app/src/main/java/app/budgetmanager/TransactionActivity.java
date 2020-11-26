@@ -127,7 +127,7 @@ public class TransactionActivity extends AppCompatActivity {
         List<Category> categories = db.getAllCategories();
         List<String> categoryData = new ArrayList<String>();
         for (Category category : categories) {
-            categoryData.add(category.getName() + " | " + category.getType());
+            categoryData.add(category.getName() + " (" + category.getType() + ")");
         }
         ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categoryData);
         categorySpin.setAdapter(categoriesAdapter);
