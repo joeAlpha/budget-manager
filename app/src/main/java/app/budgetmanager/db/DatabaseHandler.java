@@ -227,16 +227,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return accountList;
     }
 
-    public int updateAccount(Account account) {
+    public void updateBalance(String id, String ammount) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(ACCOUNT_NAME, account.getName());
-        values.put(ACCOUNT_TYPE, account.getName());
-        values.put(ACCOUNT_BALANCE, account.getBalance());
+        values.put(ACCOUNT_BALANCE, ammount);
 
-        return db.update(ACCOUNTS_TABLE, values, ACCOUNT_ID + " = ?",
-                new String[]{String.valueOf(account.getId())});
+        db.update(ACCOUNTS_TABLE, values, ACCOUNT_ID + " = ?",
+                new String[]{id});
     }
 
     public void deleteAccount(String id) {

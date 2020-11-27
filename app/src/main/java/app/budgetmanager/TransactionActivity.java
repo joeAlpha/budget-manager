@@ -14,6 +14,7 @@ import app.budgetmanager.db.DatabaseHandler;
 import app.budgetmanager.location.Constant;
 import app.budgetmanager.location.GpsUtils;
 import app.budgetmanager.model.*;
+import app.budgetmanager.ui.AccountStatusMonitor;
 import com.google.android.gms.location.*;
 
 import java.text.SimpleDateFormat;
@@ -30,7 +31,7 @@ public class TransactionActivity extends AppCompatActivity {
     EditText ammountField, conceptField, beneficiaryField, notesField;
     CheckedTextView scheduledCheck;
     Account account;
-    TextView currentAccountLabel, balanceLabel;
+    AccountStatusMonitor accountStatusMonitor;
 
     // Location variables
     private FusedLocationProviderClient mFusedLocationClient;
@@ -54,10 +55,7 @@ public class TransactionActivity extends AppCompatActivity {
         account = db.getAccount(db.getActiveAccountId());
 
         // Status >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        currentAccountLabel = findViewById(R.id.current_account_label);
-        currentAccountLabel.setText("Account: " + account.getName());
-        balanceLabel = findViewById(R.id.account_balance_label);
-        balanceLabel.setText("$" + account.getBalance());
+        accountStatusMonitor = new AccountStatusMonitor();
 
         // Location initialization >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -190,8 +188,36 @@ public class TransactionActivity extends AppCompatActivity {
                         category
                 );
 
-                db.addTransaction(transaction);
-                Toast.makeText(getApplicationContext(), "Transaction registered successfully!", Toast.LENGTH_SHORT).show();
+                String currentBalanceOfTarget = db.getAccount(accountId).getBalance();
+                if (transaction.getType().equals("Deposit")) {
+                    String newBalance = String.valueOf(
+                            Integer.parseInt(currentBalanceOfTarget) - Integer.parseInt(ammount)
+                    );
+                    db.updateBalance(accountId, newBalance);
+                    db.addTransaction(transaction);
+                    Toast.makeText(
+                            getApplicationContext(), "" +
+                                    "Transaction registered successfully!",
+                            Toast.LENGTH_SHORT).show();
+                } else if (Integer.parseInt(currentBalanceOfTarget) > Integer.parseInt(ammount)) {
+                    String newBalance = String.valueOf(
+                            Integer.parseInt(currentBalanceOfTarget) - Integer.parseInt(ammount)
+                    );
+                    db.updateBalance(accountId, newBalance);
+                    db.addTransaction(transaction);
+                    accountStatusMonitor.refreshStatus();
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "transaction registered successfully!",
+                            Toast.LENGTH_SHORT).show();
+                    accountStatusMonitor.refreshStatus();
+                } else {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Error, the account haven't enough money to expense!",
+                            Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

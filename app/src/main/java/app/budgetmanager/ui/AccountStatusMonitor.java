@@ -1,12 +1,13 @@
 package app.budgetmanager.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import app.budgetmanager.R;
 import app.budgetmanager.db.DatabaseHandler;
@@ -20,8 +21,15 @@ public class AccountStatusMonitor extends Fragment {
     View view;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        db = new DatabaseHandler(getContext());
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.account_status_layout, container, true);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        db = new DatabaseHandler(getActivity());
         if (db.getAccountsCount() == 0) {
             db.addAccount(new Account("Default", "Money"));
             db.addCategory(new Category("MyExpense", "Expenses", "1"));
@@ -30,23 +38,19 @@ public class AccountStatusMonitor extends Fragment {
         }
         account = db.getAccount(db.getActiveAccountId());
 
-        view = inflater.inflate(R.layout.account_status_layout, container, false);
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        account = db.getAccount(db.getActiveAccountId());
-
         currentAccountLabel = view.findViewById(R.id.current_account_label);
         currentAccountLabel.setText("Account: " + account.getName());
-        accountBalanceLabel= view.findViewById(R.id.account_balance_label);
+        accountBalanceLabel = view.findViewById(R.id.account_balance_label);
         accountBalanceLabel.setText("$" + account.getBalance());
+    }
+
+    public void refreshAccount() {
+        account = db.getAccount(db.getActiveAccountId());
+        currentAccountLabel.setText("Account: " + account.getName());
     }
 
     public void refreshStatus() {
-        currentAccountLabel.setText("Account: " + account.getName());
-        accountBalanceLabel.setText("$" + account.getBalance());
+        account = db.getAccount(db.getActiveAccountId());
+        currentAccountLabel.setText("Account: " + account.getBalance());
     }
 }
