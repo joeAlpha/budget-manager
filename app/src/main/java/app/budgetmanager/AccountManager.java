@@ -95,7 +95,6 @@ public class AccountManager extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 db.deleteAccount(accountId);
-                                db.deleteAccountCategories(accountId);
                                 Toast.makeText(
                                         getApplicationContext(),
                                         "Account and categories associated with it was deleted!",
@@ -103,6 +102,12 @@ public class AccountManager extends AppCompatActivity {
                             }
                         } else if(item == 1) {
                             db.setActiveAccount(accountId);
+
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    "New act. acc. id: " + accountId,
+                                    Toast.LENGTH_SHORT).show();
+
                             Toast.makeText(
                                     getApplicationContext(),
                                     "New account selected",

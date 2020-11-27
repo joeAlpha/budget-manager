@@ -1,7 +1,5 @@
 package app.budgetmanager.ui;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,18 +27,28 @@ public class AccountStatusMonitor extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        db = new DatabaseHandler(getActivity());
+        db = new DatabaseHandler(getContext());
         if (db.getAccountsCount() == 0) {
             db.addAccount(new Account("Default", "Money"));
             db.addCategory(new Category("MyExpense", "Expenses", "1"));
             db.addCategory(new Category("MyPayment", "Payment", "1"));
             db.setActiveAccount("1");
         }
+
         account = db.getAccount(db.getActiveAccountId());
 
         currentAccountLabel = view.findViewById(R.id.current_account_label);
-        currentAccountLabel.setText("Account: " + account.getName());
+        currentAccountLabel.setText("Account: Default"+ account.getName());
         accountBalanceLabel = view.findViewById(R.id.account_balance_label);
+        accountBalanceLabel.setText("$" + account.getBalance());
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        account = db.getAccount(db.getActiveAccountId());
+        currentAccountLabel.setText("Account: " + account.getName());
         accountBalanceLabel.setText("$" + account.getBalance());
     }
 
@@ -49,8 +57,4 @@ public class AccountStatusMonitor extends Fragment {
         currentAccountLabel.setText("Account: " + account.getName());
     }
 
-    public void refreshStatus() {
-        account = db.getAccount(db.getActiveAccountId());
-        currentAccountLabel.setText("Account: " + account.getBalance());
-    }
 }

@@ -205,12 +205,10 @@ public class TransactionActivity extends AppCompatActivity {
                     );
                     db.updateBalance(accountId, newBalance);
                     db.addTransaction(transaction);
-                    accountStatusMonitor.refreshStatus();
                     Toast.makeText(
                             getApplicationContext(),
                             "transaction registered successfully!",
                             Toast.LENGTH_SHORT).show();
-                    accountStatusMonitor.refreshStatus();
                 } else {
                     Toast.makeText(
                             getApplicationContext(),

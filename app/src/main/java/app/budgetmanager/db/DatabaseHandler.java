@@ -68,7 +68,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 ")";
 
         String CREATE_ACTIVE_ACCOUNT_TABLE = "CREATE TABLE " + ACTIVE_ACCOUNT_TABLE + "(" +
-                ACTIVE_ACCOUNT_ID + " INTEGER PRIMARY KEY NOT NULL, " +
+                ACTIVE_ACCOUNT_ID + " TEXT, " +
                 ACTIVE_ACCOUNT + " TEXT" +
                 ")";
 
@@ -116,17 +116,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void setActiveAccount(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        //Log.d("OK", id);
         ContentValues values = new ContentValues();
         values.put(ACTIVE_ACCOUNT, id);
 
-        db.insert(ACTIVE_ACCOUNT_TABLE, null , values);
+        db.update(ACTIVE_ACCOUNT_TABLE, values, null, null);
+
+
+        String activeAccountQuery = "SELECT " + ACTIVE_ACCOUNT + " FROM " + ACTIVE_ACCOUNT_TABLE;
+        Cursor cursor = db.rawQuery(activeAccountQuery, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            id = cursor.getString(0);
+            cursor.close();
+            Log.d("new act. acc. ", id);
+        } else Log.d("erro", "THERE IS NO ACTIVE ACCOUNTS FOUND");
+
     }
 
     public String getActiveAccountId() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        //String activeAccountQuery = "SELECT " + ACTIVE_ACCOUNT + " FROM " + ACTIVE_ACCOUNT_TABLE;
-        //Cursor cursor = db.rawQuery(activeAccountQuery, null);
+        String activeAccountQuery = "SELECT " + ACTIVE_ACCOUNT + " FROM " + ACTIVE_ACCOUNT_TABLE;
+        Cursor cursor = db.rawQuery(activeAccountQuery, null);
+        /*
         Cursor cursor = db.query(
                 ACTIVE_ACCOUNT_TABLE,
                 null,
@@ -135,14 +147,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 null,
                 null,
                 null);
+         */
         //Log.d("Count",String.valueOf(cursor.getCount()));
 
         String activeAccountId;
         if (cursor != null && cursor.moveToFirst()) {
-            activeAccountId = cursor.getString(1);
+            activeAccountId = cursor.getString(0);
+            Log.d("ID", activeAccountId);
             cursor.close();
             return activeAccountId;
-        } else return "THERE IS NO ACTIVE ACCOUNTS FOUND";
+        } else return "1";
     }
 
     public void addAccount(Account account) {
@@ -158,6 +172,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Account getAccount(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.query(
                 ACCOUNTS_TABLE,
                 new String[]{
@@ -203,7 +218,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
 
         return accountNames;
-
     }
 
     public List<Account> getAllAccounts() {
@@ -240,6 +254,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void deleteAccount(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(ACCOUNTS_TABLE, ACCOUNT_ID + " = ?",
+                new String[]{id});
+        db.delete(CATEGORY_TABLE, CATEGORY_ACCOUNT + " = ?",
+                new String[]{id});
+        db.delete(TRANSACTIONS_TABLE, TRANSACTION_ACCOUNT + " = ?",
                 new String[]{id});
     }
 
